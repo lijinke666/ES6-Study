@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="../node_modules/babel-core/browser.min.js"></script>
+<script type="text/babel">
+    //ES5中的 parseInt()  parseFloat()  是全局的方法
+    var num = 1.2;
+    console.log(parseInt(num));
+    console.log(parseFloat(num));
+
+    //ES6中把这两个改为 Number对象下面的方法了
+    var num2 = 2.3;
+    console.log(Number.parseInt(num2));
+    console.log(Number.parseFloat(num2));
+</script>
+</html>

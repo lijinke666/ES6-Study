@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>es6 的类</title>
+</head>
+<body>
+
+</body>
+<!--将es6 转换成 es5语法-->
+<!--方法很多  nodejs 环境  webpack都可以实现  这里采用浏览器模式 :) -->
+<script src="../node_modules/babel-core/browser.min.js"></script>
+<script type="text/babel">
+    //es5  传统写法
+    function ES5function( name ){
+        this.name = name;
+    }
+    ES5function.prototype.sayName = function(){
+        alert("我的名字:"+ this.name);
+    };
+
+    var bb = new ES5function("赵日天");
+    bb.sayName();     //我的名字赵日天
+
+
+    //es6  class写法  和php类似感觉
+    class ES6function {
+        constructor( name ){          //es6的构造方法
+            this.name = name;
+        }
+        sayName(){                         //这里就相当于   ES6function.prototype.sayName = function(){}
+            alert( this.name );
+        }
+    }
+    var cc = new ES6function("李金珂");
+    cc.sayName();              //李金珂
+
+    console.log(cc.constructor === ES6function.prototype.constructor);  //true   cc就是调用的 当前new的函数的原型链上的方法
+
+
+
+    //********继承  extends **********//  感觉和php好像。。
+    class testaa {
+        constructor( name, sex ){
+            this.name = name;
+            this.sex =  sex;
+        }
+        sayHi(){
+           alert("我是testaa的 sayHi方法 当前的name和sex是："+this.name+"  "+ this.sex);
+        }
+    }
+
+    let test = new testaa('李金珂','18');      //当前this 指针指向 testaa
+    test.sayHi();        //李金珂  18
+
+    class testbb extends testaa{
+        haha(){
+            alert("我是testbb类的方法");
+        }
+    }
+    let test2 = new testbb('习近平','99');
+    //这里继承了  testaa  里面的所有属性和方法
+    test2.sayHi();          //  虽然是继承  但是当前this 指正 指向 testbb 所以结果 习近平 99
+    test2.haha();
+</script>
+</html>

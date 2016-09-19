@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="../node_modules/babel-core/browser.min.js"></script>
+<script type="text/babel">
+    class ToSignForAGift{
+        constructor( islike ){
+            this.islike = islike;
+        }
+        GiftInfo(){
+            let GiftInfo = {
+                WhoGaveThem:'李金珂',
+                TheRecipient:'娜娜大美女',
+                givingTime :'2016/7/18'
+            };
+            return GiftInfo;
+        }
+        showMsg(){
+            if(typeof this.islike  != 'boolean'){
+                return;
+            }
+            if( this.islike ===  true ){
+                 alert( this.GiftInfo().WhoGaveThem +"  " +'送给美丽性感知性稳重帅气迷人可爱优雅风趣大方闷骚一言不合就开车的爱体重身高都超过180的娜娜姐' );
+            }else{
+                alert('对方拒绝了你的消息，并向你吐了口水');
+            }
+        }
+    }
+    let NaNa =  new ToSignForAGift( false );    //是否喜欢
+    NaNa.showMsg();
+</script>
+</html>

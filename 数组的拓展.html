@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组的拓展</title>
+</head>
+<body>
+
+</body>
+<script src="../node_modules/babel-core/browser.min.js"></script>
+<script type="text/babel">
+    /*---------1. Array.form( obj )   将对象转换为数组 -------------*/
+    //ES5中 将对象转换为数组
+    let obj = {
+        name : "李金珂",
+        sex :"男",
+        age : 19
+    };
+    console.log(obj);    //Object
+    for(var i in obj){
+        console.log(obj[i]);
+    }
+    var objToArray = Array.prototype.slice.call( obj );
+    console.log(objToArray);   //Array;
+
+
+    //ES6中  将对象转换为数组
+    let objToArray2 = Array.from( obj );
+    console.log( objToArray2 );  //Array
+
+    /*---------2. Array.of()   将值转换为数组 --------------*/
+    //ES5中  声明一个对象  参数个数不同 会导致 行为有差异
+    var array = new Array(3);
+    console.log(array);  // [, , ,]  这里是三个下标
+    var array2 = new Array(1,2,3);
+    console.log(array2);     // [1,2,3]
+
+    //ES6中进行了统一  总是返回参数数值组成的数组
+    let array3 = Array.of();
+    console.log(array3);     //[]
+    let array4 = Array.of(undefined);
+    console.log(array4);      // [undefined]
+    let array5 = Array.of(3)
+    console.log(array5); // [3]    这里就不是三个下标了
+
+
+    /*---------3. copyWithin()  将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组 --------------*/
+    //Array.prototype.copyWithin(target, start = 0, end = this.length)
+    //target（必需）：从该位置开始替换数据。
+//    start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示倒数。
+//    end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数
+
+    var array6 = [1,2,3,4,5];
+    let copyWithin_array6 = array6.copyWithin(0,3); //从下标0 替换数据  从下标3 读取数据   读取 4,5  覆盖掉 1,2
+    console.log(copyWithin_array6);     //所以  [4,5,3,4,5 ]
+
+    /*----------4.数组实例的find()和findIndex()-----------------------------*/
+    //find()  找出第一个符合条件的数组成员  如果没有 返回 undefined    参数是一个回调函数
+    if(true){
+        let array = [1,2,3,4 -1];
+        //value 当前的值,  index 当前的位置　arr 原数组
+        let find = array.find(function( value, index, arr ){
+            return value >1 ;
+        })
+        console.log(find); //2
+        let find2 = array.find(function( value, index, arr ){
+            return index > 2 ;
+        })
+        console.log(find2); //3
+    }
+    //findIndex() 和 indexOf()  相似  用来找到第一个符合条件的数组成员的索引
+    //他们的区别就是 findIndex 可以识别 NaN
+    //ES5中使用 indexOf();
+    if(true){
+        let array6 = [1,2,3];        //块级作用域  取变量名终于不用怕重名了
+        console.log(array6.indexOf(1)); //0
+    }
+    //ES6使用 findIndex();
+    if(true){
+        let array = [1,2,3,4,5 ];
+        //参数通 find()
+        let findIndex = array.findIndex(function( value, index, arr ){
+            return value>2;
+        })
+        console.log(findIndex); //下标 2
+    }
+
+    /*--------------6.数组的实例化-------------------*/
+    //ES6提供三个新的方法——entries()，keys()和values()——用于遍历数组。可以用for...of循环进行遍历，
+    // 唯一的区别是
+    // keys()是对键名的遍历、
+    // values()是对键值的遍历，
+    // entries()是对键值对的遍历
+
+    if(true){
+        for(let index of ['a','b'].keys()){
+            console.log(index);          //下标　0,1
+        }
+    }
+
+    if(true){
+        for(let value of ['a','b'].values()){
+            console.log(value);          //键值  a,b
+        }
+    }
+
+    if(true){
+        for(let [index,value] of ['a','b'].entries()){
+            console.log(index,value);    //0 'a'  1 'b'
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for...of循环</title>
+</head>
+<body>
+
+</body>
+<script src="../node_modules/babel-core/browser.min.js"></script>
+<script type="text/babel">
+    //ES5最常规的 for 循环
+    var item = ['a','b','c','d','e'];
+    for(var i=0; i< item.length; i++){
+        console.log(i+" " + item[i]);   //获取 键  值
+    }
+
+    //第二种 forEach()  循环
+     item.forEach(function( value, index ){
+         console.log(index +" "+  value);
+     });
+
+    //第三种 for..in   通常用来遍历对象  不能直接获取键值
+    var obj ={
+        a:'赵日天',
+        b:'李金珂',
+        c:'龙浩天'
+    };
+    for(var j in obj){
+        console.log(j);
+        console.log(obj[j]);
+    }
+
+    console.log("==========华丽分界线======================");
+    //ES6引入 for...of  循环  可以代替上面所有方法  数组,对象,字符串 都可以
+    //1.entries() 返回一个遍历器对象，用来遍历[键名, 键值]组成的数组。对于数组，键名就是索引值；对于Set，键名与键值相同。Map结构的iterator接口，默认就是调用entries方法。
+//    2.keys() 返回一个遍历器对象，用来遍历所有的键名。
+//    3.values() 返回一个遍历器对象，用来遍历所有的键值。
+    //以for...of 循环 替代 for in 循环      for..of 可以跳出循环  for in不可以
+    if(true){
+        for(let i of item){
+            console.log(i);      //值
+        }
+    }
+
+    //for...of循环调用遍历器接口，数组的遍历器接口只返回具有数字索引的属性。这一点跟for...in循环也不一样。
+    if(true){
+        let array = [1,2,3];
+        array.key = '我是新增的';
+        //使用for...in循环   for..in  会遍历新增的键  for..of不会
+        for(let i  in array){
+            console.log(i);  //0,1,2,key
+        }
+
+        //使用 for..of 循环
+        for(let i of array){
+            console.log(i);   //1,2,3
+        }
+    }
+
+    //以for...of 循环 替代 forEach 循环
+    if(true){
+        let array = ['哈哈哈','嘻嘻嘻','滋滋滋'];
+        array.forEach(function( value , index ){
+            console.log(index+"  "+ value);
+        })
+
+        for(let i of array.entries()){
+            console.log(i);
+        }
+
+        for(let [key,value] of array.entries()){
+            console.log(key,value);
+        }
+    }
+</script>
+</html>

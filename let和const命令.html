@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let和const命令</title>
+</head>
+<body>
+
+</body>
+<script src="../node_modules/babel-core/browser.min.js"></script>
+<script type="text/babel">
+    /* ============================== Let ===========================*/
+    //1.
+    //let  和 var 都是声明变量   但是let是块级作用域
+    {
+        var a = 1;
+        let b = 2;
+    }
+    console.log(a);        //1
+//    console.log(b);        // undefined
+
+    //2.
+    for(var i=0; i<10; i++){}
+    console.log(i);       //10  每一次循环会覆盖掉上一次的值
+
+    for(let j=0; j<10; j++){}
+//    console.log(j);      //  not defined 未定义
+
+    //3.
+    var aa = [];
+    for(var k=0; k<10; k++){
+        aa[k] = function(){           //这里是一个未执行函数
+            console.log(k);
+        }
+    }
+    aa[6]();      //当调用这个函数的时候  循环已经把k 值覆盖了  所以 k = 10;
+
+    var bb = [];
+    for(let g=0; g<10; g++){
+        bb[g] = function(){
+            console.log(g);
+        }
+    }
+    bb[6]();         //使用let声明  g只在本轮循环有效  所以执行时g是一个新的变量 所以  g = 6;
+
+    //4.变量提升
+    //var 声明变量会 形成 变量提升
+    console.log(testVar);          //undefined
+    console.log(testLet);          //undefined
+    var testVar = 1;
+    let testLet = 2;
+
+    //5.暂时性死区
+
+    var die = 666;         //这里声明个全局变量
+    if (true){
+        die = '李金珂';
+        console.log(die);      //打印  李金珂
+        //但是如果作用域中出现 let或者const  就会封锁这个作用域
+        let die;
+        die = '赵日天';
+        console.log(die);        //赵日天
+    }
+
+    //6.块级作用域
+    //传统闭包 写法
+    (function(){
+        var a1 = 1;
+    })();
+//    console.log(a1);        //not defined
+
+    //ES6  写法
+    {
+        let aaa = 1;
+    }
+//    console.log(aaa);      //not defined
+
+    //7.块级作用域里面的函数声明
+    //ES5中 函数不能在块级中声明函数
+    if(true){
+        function aaaaa(){           //非法的  但是浏览器不会报错  使用严格模式 会报错　‘ｕｓｅ　ｓｔｒｉｃｔ’
+
+        }
+    }
+   //ES6中 函数可以在块级中声明
+
+
+    /* ============================== const ===========================*/
+    //const 声明一个只读的常量  声明之后不可重新赋值  并且声明之后必须立即赋值 否则报错
+//    const gg;        //报错
+    const gg = 'const';       //有点像 php 的
+    console.log(gg);     //const
+//    gg = '赵日天';       //报错  无法重新赋值
+</script>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数的解析赋值</title>
+</head>
+<body>
+
+</body>
+<script src="../node_modules/babel-core/browser.min.js"></script>
+<script type="text/babel">
+    //这种写法叫模式匹配  只要两把的模式是一样的  就会被解析
+    //传统ES5 为变量赋值
+//    var a =1;
+//    var b =2;
+//    var c =3;
+    /*======================数组的解构赋值=========================================*/
+    //ES6
+    var [a,b,c] = [1,2,3];
+    console.log(a,b,c);        //1 2 3
+
+    var [aa,[bb],cc] = [1,[2],3];        //这里bb是数组  只需要在右边 也声明数组就会被解析
+    console.log(aa,bb,cc);     //1 2 3
+
+    //不完全解析
+    var [i,j] = [1];
+    console.log(i);     //1
+    console.log(j);     //undifend
+
+
+
+    //默认值
+    let [qq=1] = [undefined];
+    console.log(qq);            //1
+    qq =2 ;
+    console.log(qq);            //2
+    //默认值的机制  采用=== 判断是否为undifend  所以如果是null  默认值无效
+    let [qqq=2] = [null];
+    console.log(qqq);         //null
+
+    let [x=1,y,z] = [2,3];
+    console.log(x,y,z);  //2,3,undefined
+
+    /*==================对象的解构赋值============================================*/
+    //数组解构 是按顺序解析  对象是按 键值对 的方式
+    var {xx,yy} = {xx:1,yy:2};
+    console.log(xx,yy);          //1,2
+    var {ww,uu} = {uu:"李金珂",ww:"赵日天"};
+    console.log(ww,uu);       //赵日天  李金珂
+
+
+
+    //解构赋值的应用场景
+
+    //1.函数返回多个值
+    function test(){
+        return [1,2,3]
+    }
+    var [ta,tb,tc] = test();
+    console.log(ta,tb,tc);         //1 2 3
+
+    function testObj(){
+        return{
+           qx:"李金珂",
+            qy:"赵日天"
+        }
+    }
+    var {qx,qy} = testObj();
+    console.log(qx);         //李金珂
+    console.log(qy);         //赵日天
+
+    //这种比较方便  如果在ES5中 我定义一个函数返回了值 要接受这些值
+    //相比之下  ES6就要方便的多  要更加简介直观
+    function test2(){
+        return {
+            obj1:"哈哈",
+            obj2:"嘿嘿"
+        }
+    }
+    var ttt = test2();
+    var obj1 = ttt.obj1;
+    var obj2 = ttt.obj2;
+    console.log(obj1,obj2);  //哈哈  嘿嘿
+
+    //2.提取JSON数据
+    var json = {
+        id:1,
+        name:'李金珂',
+        sex:'男'
+    };
+    var {id,name,sex} = json;
+    console.log(id,name,sex);       //1,李金珂,男
+    //ES5中就只有
+    var id2 = json.id;
+    var name2 = json.name;
+    var sex2 = json.sex;
+    console.log(id2,name2,sex2);       //1,李金珂,男
+
+    //3.遍历Map解构
+    var map = new Map();
+    map.set('id','2');
+    map.set('name','赵日天');
+    map.set('sex','男');
+    for(let[id,name,sex] of map){
+        console.log(key+" "+value);
+    }
+</script>
+</html>
