@@ -8,13 +8,13 @@
     
 </body>
 <script src="browser.min.js"></script>
-<script type="text/babel">
+<script>
     function* f(){
-        console.log('nice')
+        yield console.log('nice')
     }
     var F = f();
     setTimeout( ()=>{
         F.next();
-    })
+    },3000)
 </script>
 </html>

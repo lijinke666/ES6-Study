@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>reduce</title>
+</head>
+<body>
+	
+</body>
+<script src="browser.min.js"></script>
+<script>
+    const array = [
+    	[1, 2, 3, 4, 5],
+    	['a', 'b', 'c', 'd', 'e']
+    ]
+    //使用reduce和concat 转换成一维数组
+    
+    let newArray = array.reduce((prev,next)=> prev.concat(next))
+    console.log(newArray)     //[1,2,3,4,5,'a','b','c','d','e']
+    
+
+    //可以封装成一个方法
+    function toReduce( array ){
+    	 return array.reduce(( prev,next )=> prev.concat(next) )
+    }
+    const array2 = [
+    	[1, 2, 3, 4, 5],
+    	['a', 'b', 'c', 'd', 'e']
+    ]
+    let newArray2 = toReduce(array2);
+    console.log(newArray2)
+</script>
+</html>

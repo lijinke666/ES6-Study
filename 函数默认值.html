@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数默认值</title>
+</head>
+<body>
+	
+</body>
+<script src="browser.min.js"></script>
+<script>
+	//es5 
+	function fn( text ){
+		//指定默认值
+		text = text || '你好';
+		console.log(text);
+		//或者
+		if(typeof text == 'undefined'){
+			text = '你好 '
+		}
+	}
+	fn();
+
+	//es6  更加方便
+	function fnc (text='你好'){
+		 console.log(text)
+	}
+	fnc();
+	fnc('哈哈哈')
+</script>
+</html>
