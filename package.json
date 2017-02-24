@@ -1,0 +1,11 @@
+{
+  "scripts":{
+    "start":"http-server"
+  },
+  "name": "ES6-Study",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lijinke666/ES6-Study.git",
+  "author": "jinke.li <jinke.li@feitian-tech.com>",
+  "license": "MIT"
+}

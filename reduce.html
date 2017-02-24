@@ -7,7 +7,6 @@
 <body>
 	
 </body>
-<script src="browser.min.js"></script>
 <script>
     const array = [
     	[1, 2, 3, 4, 5],
@@ -29,5 +28,19 @@
     ]
     let newArray2 = toReduce(array2);
     console.log(newArray2)
+
+    //reduce 第二个参数 [] || {}  当有第二个参数时  reduce(a,b)  a就是 传的参数  b才是第一个对象
+    const array3 = [{
+        "test":"哈哈",
+    },{
+        "test":"嘻嘻",
+    },{
+        "test":"吱吱",
+    }]
+    const newObj = array3.reduce((o,v)=>{
+        o[v.test+"reduce"] = v.test
+        return o;
+    },{})
+    console.log(newObj)
 </script>
 </html>
