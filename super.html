@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  
+  class a{
+    constructor(name){
+      this.name = name;
+    }
+    sayName(){
+       console.log(`名字:${this.name}`)
+    }
+    sayHi(){
+      console.log("父类的hi方法")
+    }
+  }
+
+  class b extends a{
+    constructor(name){
+      super(name)
+    }
+    sayBHi(){
+      super.sayHi();
+    }
+  }
+
+  var test = new b("李金科");
+  test.sayName()
+  test.sayBHi();
+</script>
+</html>
