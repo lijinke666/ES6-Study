@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>扩展运算符</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const arr = [1,2,3]
+
+    //拷贝一个数组
+    const arr2 = arr.slice()
+    //换一种思路
+
+    const arr3 = [...arr]
+
+
+    const obj = {a:1,b:2}
+
+    // 对象的合并
+    const obj2 = Object.assign({},obj,{b:3})
+    //换一种思路
+
+    const obj3 = {...obj,b:3}
+</script>
+</html>
