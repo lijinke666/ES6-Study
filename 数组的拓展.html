@@ -110,5 +110,15 @@
         }
     }
 
+
+    const Fn = (a,b,c)=> console.log(a,b,c)
+
+    const params = [1,2,3]
+
+    //Es5
+    Fn.apply(null,params)
+
+    //Es6
+    Fn(...params)
 </script>
 </html>
