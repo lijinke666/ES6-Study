@@ -32,6 +32,7 @@
     }
   }
 
+  console.log(Object.getPrototypeOf(b) === a);      //b 是否继承了 a
   var test = new b("李金科");
   test.sayName()
   test.sayBHi();
