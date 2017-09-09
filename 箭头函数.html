@@ -10,56 +10,56 @@
 <script src="../node_modules/babel-core/browser.min.js"></script>
 <script>
     /*=============== 第一种最简易的==============*/
-    //ES5中  声明一个函数
-//     function num ( num1 , num2 ){
-//         alert( num1 + num2);
-//     }
-//     num( 1,3 );
+    // ES5中  声明一个函数
+    function num ( num1 , num2 ){
+        alert( num1 + num2);
+    }
+    num( 1,3 );
 
 
-//     //ES6 用箭头函数实现同等效果
-//     var num2= (num1 , num2) => num1+ num2;         // num 代表函数名   () 括号里是参数  => 后面是 做什么      参数只有一个可以省略括号 没有参数要写一个空括号()
-//     console.log(num2);
-//     num2( 1,3 );
-//     console.info("============================");
+    //ES6 用箭头函数实现同等效果
+    var num2= (num1 , num2) => num1+ num2;         // num 代表函数名   () 括号里是参数  => 后面是 做什么      参数只有一个可以省略括号 没有参数要写一个空括号()
+    console.log(num2);
+    num2( 1,3 );
+    console.info("============================");
 
-//     //编译完  实际就是
-// //    function num(num1, num2 ){
-// //        return num1 + num2;
-// //    }
+    //编译完  实际就是
+//    function num(num1, num2 ){
+//        return num1 + num2;
+//    }
 
-//     /*=============== 第二种 循环的使用==============*/
-//     let array = ['1','sf','3','sfa'];
-//     //ES5写法
-//     array.forEach(function( value, key ){
-//         alert(value);
-//     });
-//     //ES6写法
-//     array.forEach((value,key)=> alert(value))
+    /*=============== 第二种 循环的使用==============*/
+    let array = ['1','sf','3','sfa'];
+    //ES5写法
+    array.forEach(function( value, key ){
+        alert(value);
+    });
+    //ES6写法
+    array.forEach((value,key)=> alert(value))
 
-//     =============== 第三种 this的指针===============
-//     //ES5写法
-//     var obj = {
-//         age:'18',
-//         names:['赵日天','叶良辰','陈冠希'],
-//         sayName:function(){                         // ES5 中 如果 sayName方法要遍历 names数组
-//             var _this = this;
-//             this.names.forEach(function( value, item ){          // 在forEach循环里  如果 要等到 age 要保存this指针
-//                 alert(_this.age);
-//             })
-//         }
-//     };
-//     obj.sayName();
+    // =============== 第三种 this的指针===============
+    //ES5写法
+    var obj = {
+        age:'18',
+        names:['赵日天','叶良辰','陈冠希'],
+        sayName:function(){                         // ES5 中 如果 sayName方法要遍历 names数组
+            var _this = this;
+            this.names.forEach(function( value, item ){          // 在forEach循环里  如果 要等到 age 要保存this指针
+                alert(_this.age);
+            })
+        }
+    };
+    obj.sayName();
 
-//     //ES6写法
-//     let obj2 = {
-//         age:'111',
-//         names:['赵日天','叶良辰','陈冠希'],
-//         sayName:function(){                         // ES6 中 如果 sayName方法要遍历 names数组
-//             this.names.forEach(value=>alert(this.age));      //使用箭头函数  当前 this指针 自动指向  obj2 本身
-//         }
-//     };
-//     obj2.sayName();
+    //ES6写法
+    let obj2 = {
+        age:'111',
+        names:['赵日天','叶良辰','陈冠希'],
+        sayName:function(){                         // ES6 中 如果 sayName方法要遍历 names数组
+            this.names.forEach(value=>alert(this.age));      //使用箭头函数  当前 this指针 自动指向  obj2 本身
+        }
+    };
+    obj2.sayName();
 
 </script>
 </html>
