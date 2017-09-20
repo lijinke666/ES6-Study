@@ -7,9 +7,9 @@
 <body>
 	
 </body>
-<scrip src="browser.min.js"></script>
-<script type="module" src="module.js">
-	import { sayName } from './module';
-	sayName(111); 
+<script type="module">
+	// 谷歌浏览器61 新增原生支持  不需要 babel
+	import {sayName} from "./module.js"
+	sayName('你好!')
 </script>
 </html>
