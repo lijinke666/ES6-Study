@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>es7的修饰器</title>
+</head>
+<body>
+    
+</body>
+<script>
+    @testA
+    class A{
+
+    }
+
+
+    function testA(target){
+        target.name = '李金珂'
+    }
+
+    console.log(A.name);
+
+
+    @testB('赵日天')
+    class B {
+
+    }
+
+    function testB (name){
+        return function(target){
+            target.name = name
+        }
+    }
+</script>
+</html>
