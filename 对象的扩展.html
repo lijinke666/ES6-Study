@@ -32,5 +32,37 @@
 	Object.is('1', '1') //true
 	Object.is(NaN, NaN) //true
 	Object.is(1, '1') //false
+
+
+	//key 值可以是变量
+
+	const name = 'ljk'
+	const oo = { [name] : '哈哈'}
+	console.log(oo[name]);
+
+	//对象中的super
+	const proto = {
+		x:"你好",
+		test(){
+			console.log(this.x);
+		}
+	}
+	const test  = {
+		y:"李金珂",
+		test(){
+			return super.test
+		}
+	}
+
+	//改变原型
+	Object.setPrototypeOf(test,proto)
+	console.log(test.test());
+
+
+	//扩展符
+
+	const obj = {name:1,age:18,text:"你好"}
+	const {name,...other} = obj
+	console.log(name,other);
 </script>
 </html>
