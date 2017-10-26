@@ -176,17 +176,17 @@ const testData = data.reduce((arr, next) => {
     const o = {}
     const transFormResult = next.items.map(({ rewards, img_dail, img_result, lucky, is_big_reward, reward_times }) => {
         //奖励
-        const _rewards = rewards.map(({ chip, diamond, des, master_score, objs = [] }) => {
+        const _rewards = rewards.map(({ chip, diamond, des, master_score, objs = [] },index) => {
             //实物奖励 objs
             const rewardPrizes = objs.map(({
-                obj_icon = "",
+                obj_icon,
                 obj_id = 0,
-                obj_id2 = "",        //wx优惠券id  
-                obj_name = "",
-                obj_count = 0 ,      //奖品数量
+                obj_id2,        //wx优惠券id  
+                obj_name,
+                obj_count,      //奖品数量
                 obj_type,              //奖品类型
-                temp_id = 0,
-                valid_time = 0         //0 永久有效
+                temp_id,
+                valid_time
             }) => {
                 return {
                     prizeIcon: obj_icon || "",
@@ -204,6 +204,7 @@ const testData = data.reduce((arr, next) => {
                 diamond:diamond || 0,
                 des:des || "",
                 masterScore: master_score || 0,
+                rewardIndex:index,
                 rewardPrizes
             })
         })
