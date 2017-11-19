@@ -7,36 +7,85 @@
 <body>
     
 </body>
-<script src="browser.min.js"></script>
 <script>
-    var promise = new Promise(( res,rej )=>{
+    // var promise = new Promise(( res,rej )=>{
+    //     setTimeout(()=>{
+    //         res();
+    //     },3000)  
+    // })
+    // //primose异步操作完成之后  调用then可以接受结果
+    // promise.then(()=>{
+    //     console.log(2)
+    // })
+
+    // //异步加载图片
+    // function loadImage( src ){
+    //     return new Promise(( res, rej )=>{
+    //         var img = new Image();
+    //         img.onload = ()=>{
+    //             res( src )
+    //         }
+    //         img.onerror = ()=>{
+    //             rej('不能找到图片')
+    //         }
+    //         img.src = src;
+    //     })
+    // }
+    // //调用loadImage  返回一个promise对象  图片加载成功后返回一个src  then（src）这里就可以接收到 非常炫酷
+    // loadImage( '../css3/.jpg' ).then(( data )=>{
+    //     document.write( data )
+    // }).catch(( error )=>{        //这里catch用来捕获错误  错误信息就是 promise函数里面的rej（error）传过来的
+    //     console.log( error );
+    // })
+
+
+
+    //promise 的快捷方法
+    /**
+     * 1.不带任何参数
+     * /
+     * */
+    const TestFn1 = Promise.resolve()
+    TestFn1.then(()=> console.log('1'))                 //1
+
+    /**
+     * 2. 字符串为参数
+     * */
+    const testFn2 = Promise.resolve('test')
+    testFn2.then((value)=>console.log(value))             //test
+
+
+    /**
+     * 3. promise对象为参数,不做任何处理 
+     * */
+
+    //  const testFn3 = Promise.resolve(setTimeout(()=>console.log(1),400))
+
+
+    const timer1 = new Promise((res)=>{
         setTimeout(()=>{
-            res();
-        },3000)  
-    })
-    //primose异步操作完成之后  调用then可以接受结果
-    promise.then(()=>{
-        console.log(2)
+            res('我是timer1')
+        },1000)
     })
 
-    //异步加载图片
-    function loadImage( src ){
-        return new Promise(( res, rej )=>{
-            var img = new Image();
-            img.onload = ()=>{
-                res( src )
-            }
-            img.onerror = ()=>{
-                rej('不能找到图片')
-            }
-            img.src = src;
-        })
-    }
-    //调用loadImage  返回一个promise对象  图片加载成功后返回一个src  then（src）这里就可以接收到 非常炫酷
-    loadImage( '../css3/.jpg' ).then(( data )=>{
-        document.write( data )
-    }).catch(( error )=>{        //这里catch用来捕获错误  错误信息就是 promise函数里面的rej（error）传过来的
-        console.log( error );
+    const timer2 = new Promise((res)=>{
+        setTimeout(()=>{
+            res('我是timer2')
+        },2000)
     })
+    //promise.all      所有的promise执行完毕之后
+    const beforeNow = Date.now()
+    const testFn3 = Promise.all([timer1,timer2]).then((data)=>{
+        console.log(Date.now() -beforeNow);
+        console.log(data);           // [undifend,'test']
+    })
+
+    //promise.race  有一个promsie 先跑完 就执行
+    const testFn4 = Promise.race([timer1,timer2]).then((data)=>{
+        console.log(Date.now() -beforeNow);
+        console.log(data);           // 我是timer1
+    })
+
+     
 </script>
 </html>
