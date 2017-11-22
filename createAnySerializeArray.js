@@ -36,7 +36,6 @@ function createAnySerializeArray(length = 0, valueType = "number", startWith = 0
         .map((v, i) => _valueType(i))
         .splice(startWith)
 
-    if(type === "boolen" || type === "")
     const diff = new Array(startWith)
         .fill(0)
         .map((v, i) => _valueType(len + i))
@@ -45,6 +44,6 @@ function createAnySerializeArray(length = 0, valueType = "number", startWith = 0
     return result
 }
 
-const array = createAnySerializeArray(5, 'function', 2)
+const array = createAnySerializeArray(5, 'number', 2)
 
 console.log(array);
