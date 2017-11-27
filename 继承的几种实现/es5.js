@@ -59,3 +59,18 @@ f.prototype = h.prototype
 const _f = new f()
 
 console.log(_f.age); //18
+
+//第四种 空对象为中介
+
+function middleware(){}
+function aa(){}
+function bb(){}
+bb.prototype.name = "bb"
+bb.prototype.say = function(){ console.log(this.name);}
+
+middleware.prototype = b.prototype
+aa.prototype = new middleware()
+aa.prototype.constructor = aa
+
+const _aa = new aa()
+console.log(_aa.name);
