@@ -141,6 +141,7 @@ var distinctArray = exports.distinctArray = function distinctArray(arr) {
 
 /**
  * 创建任意长度 任意类型的 序列化数组
+ * @author jinke.li
  * @param {Number} length=0 要生成的长度
  * @param {String} valueType="number" 生成value 的类型 
  * @param {Number} startWith=0 起始值 
