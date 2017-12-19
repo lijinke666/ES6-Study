@@ -3,7 +3,7 @@
     "start": "http-server",
     "start:func": "babel-node ./func",
     "build:func": "babel func/src -d ./func/lib",
-    "test:func": "mocha --require intelli-espower-loader ./func/__tests__"
+    "test:func": "npm run build:func && mocha --require intelli-espower-loader ./func/__tests__"
   },
   "name": "ES6-Study",
   "description": "李金珂小朋友的es6学习",

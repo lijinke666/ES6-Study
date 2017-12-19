@@ -24,9 +24,9 @@ export const arrayMin = (arr) => Math.min(...arr)
  * @param {Number} size 多少长度一组 
  * chunk([1,2,3,4,5], 2) -> [[1,2],[3,4],[5]]
  */
-export function chunk(arr, size) {
+export function chunk(arr, size = 2) {
     return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) => {
-        arr.slice(i * size, i * size + size)
+        return arr.slice(i * size, i * size + size)
     })
 }
 
@@ -54,20 +54,26 @@ export const countOccurrences = (arr, value) => arr.reduce((a, v) => v === value
 export const deepFlatten = (arr) => [].concat(...arr.map(v => Array.isArray(v) ? deepFlatten(v) : v))
 
 /**
+ * 将二维数组 转为 1维
+ * @param {Array} arr 
+ */
+export const flatten = (arr) => arr.reduce((prev, next) => prev.concat(next))
+
+/**
  * 数组去重 支持复合类型
  * @param {Array} arr 
  */
 export const distinctArray = (arr) => {
-    if (!Array.isArray(targetArray)) {
-        return targetArray
+    if (!Array.isArray(arr)) {
+        return arr
     }
-    if (targetArray.some((item) => Object.is(typeof item, "object"))) {
-        return targetArray
+    if (arr.some((item) => Object.is(typeof item, "object"))) {
+        return arr
             .map((item) => JSON.stringify(item))
             .filter((item, idx, arry) => idx === arry.findIndex((current) => current === item))
             .map((item) => JSON.parse(item))
     }
-    return [...new Set(targetArray)]
+    return [...new Set(arr)]
 }
 
 
@@ -105,14 +111,23 @@ export function createAnySerializeArray(length = 0, valueType = "number", startW
             break;
     }
 
-    const result = [...new Array(len)]
+    const result = [...new Array(len+startWith)]
         .map((v, i) => _valueType(i))
-        .splice(startWith)
+        .filter((_,i)=> i >= startWith)
 
-    const diff = new Array(startWith)
-        .fill(0)
-        .map((v, i) => _valueType(len + i))
-
-    result.push(...diff)
     return result
 }
+
+/**
+ * 找出数组中的非唯一值
+ * @param {Array} arr 
+ * filterNonUnique([1,2,2,3,4,4,5]) -> [1,3,5]
+ */
+export const filterNonUnique = (arr) => arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i))
+
+/**
+ * 找出在给定值之外的 值
+ * @param {Array} arr 
+ * @param {any} args 
+ */
+export const without = (arr, ...args) => arr.filter(v => !args.includes(v))

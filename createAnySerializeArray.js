@@ -32,16 +32,9 @@ function createAnySerializeArray(length = 0, valueType = "number", startWith = 0
             break;
     }
 
-    const result = [...new Array(len)]
+    return [...new Array(len+startWith)]
         .map((v, i) => _valueType(i))
-        .splice(startWith)
-
-    const diff = new Array(startWith)
-        .fill(0)
-        .map((v, i) => _valueType(len + i))
-
-    result.push(...diff)
-    return result
+        .filter((_,i)=> i >= startWith)
 }
 
 const array = createAnySerializeArray(5, 'number', 2)

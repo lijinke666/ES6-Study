@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.distinctArray = exports.deepFlatten = exports.countOccurrences = exports.compact = exports.arrayMin = exports.arrayMax = undefined;
+exports.without = exports.filterNonUnique = exports.distinctArray = exports.flatten = exports.deepFlatten = exports.countOccurrences = exports.compact = exports.arrayMin = exports.arrayMax = undefined;
 
 var _typeof2 = require("babel-runtime/helpers/typeof");
 
@@ -62,9 +62,11 @@ var arrayMin = exports.arrayMin = function arrayMin(arr) {
  * @param {Number} size 多少长度一组 
  * chunk([1,2,3,4,5], 2) -> [[1,2],[3,4],[5]]
  */
-function chunk(arr, size) {
+function chunk(arr) {
+    var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+
     return (0, _from2.default)({ length: Math.ceil(arr.length / size) }, function (v, i) {
-        arr.slice(i * size, i * size + size);
+        return arr.slice(i * size, i * size + size);
     });
 }
 
@@ -104,17 +106,27 @@ var deepFlatten = exports.deepFlatten = function deepFlatten(arr) {
 };
 
 /**
+ * 将二维数组 转为 1维
+ * @param {Array} arr 
+ */
+var flatten = exports.flatten = function flatten(arr) {
+    return arr.reduce(function (prev, next) {
+        return prev.concat(next);
+    });
+};
+
+/**
  * 数组去重 支持复合类型
  * @param {Array} arr 
  */
 var distinctArray = exports.distinctArray = function distinctArray(arr) {
-    if (!Array.isArray(targetArray)) {
-        return targetArray;
+    if (!Array.isArray(arr)) {
+        return arr;
     }
-    if (targetArray.some(function (item) {
+    if (arr.some(function (item) {
         return (0, _is2.default)(typeof item === "undefined" ? "undefined" : (0, _typeof3.default)(item), "object");
     })) {
-        return targetArray.map(function (item) {
+        return arr.map(function (item) {
             return (0, _stringify2.default)(item);
         }).filter(function (item, idx, arry) {
             return idx === arry.findIndex(function (current) {
@@ -124,7 +136,7 @@ var distinctArray = exports.distinctArray = function distinctArray(arr) {
             return JSON.parse(item);
         });
     }
-    return [].concat((0, _toConsumableArray3.default)(new _set2.default(targetArray)));
+    return [].concat((0, _toConsumableArray3.default)(new _set2.default(arr)));
 };
 
 /**
@@ -177,14 +189,37 @@ function createAnySerializeArray() {
             break;
     }
 
-    var result = [].concat((0, _toConsumableArray3.default)(new Array(len))).map(function (v, i) {
+    var result = [].concat((0, _toConsumableArray3.default)(new Array(len + startWith))).map(function (v, i) {
         return _valueType(i);
-    }).splice(startWith);
-
-    var diff = new Array(startWith).fill(0).map(function (v, i) {
-        return _valueType(len + i);
+    }).filter(function (_, i) {
+        return i >= startWith;
     });
 
-    result.push.apply(result, (0, _toConsumableArray3.default)(diff));
     return result;
 }
+
+/**
+ * 找出数组中的非唯一值
+ * @param {Array} arr 
+ * filterNonUnique([1,2,2,3,4,4,5]) -> [1,3,5]
+ */
+var filterNonUnique = exports.filterNonUnique = function filterNonUnique(arr) {
+    return arr.filter(function (i) {
+        return arr.indexOf(i) === arr.lastIndexOf(i);
+    });
+};
+
+/**
+ * 找出在给定值之外的 值
+ * @param {Array} arr 
+ * @param {any} args 
+ */
+var without = exports.without = function without(arr) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
+    }
+
+    return arr.filter(function (v) {
+        return !args.includes(v);
+    });
+};
