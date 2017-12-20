@@ -53,6 +53,12 @@ export const countOccurrences = (arr, value) => arr.reduce((a, v) => v === value
  */
 export const deepFlatten = (arr) => [].concat(...arr.map(v => Array.isArray(v) ? deepFlatten(v) : v))
 
+class a {
+    constructor(){
+        
+    }
+}
+
 /**
  * 将二维数组 转为 1维
  * @param {Array} arr 
@@ -132,3 +138,9 @@ export const filterNonUnique = (arr) => arr.filter(i => arr.indexOf(i) === arr.l
  * @param {any} args 
  */
 export const without = (arr, ...args) => arr.filter(v => !args.includes(v))
+
+/**
+ * 数组总和
+ * @param {Array} arr 
+ */
+export const arraySum = (arr) => arr.reduce((acc, val) => acc + val, 0)

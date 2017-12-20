@@ -16,7 +16,8 @@ const {
     distinctArray,
     createAnySerializeArray,
     filterNonUnique,
-    without
+    without,
+    arraySum
 } = require("../lib/array")
 
 describe('Array', function(){
@@ -106,6 +107,11 @@ describe('Array', function(){
                 without([1,2,3,4,5],1,2,3),
                 [4,5]
             );
+        })
+    });
+    describe('#arraySum()', () => {
+        it('数组下标求和,返回 10', () => {
+            assert( arraySum([1,2,3,4])  === 10)
         })
     });
 });

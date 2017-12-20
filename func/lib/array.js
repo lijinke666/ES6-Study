@@ -3,11 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.without = exports.filterNonUnique = exports.distinctArray = exports.flatten = exports.deepFlatten = exports.countOccurrences = exports.compact = exports.arrayMin = exports.arrayMax = undefined;
+exports.arraySum = exports.without = exports.filterNonUnique = exports.distinctArray = exports.flatten = exports.deepFlatten = exports.countOccurrences = exports.compact = exports.arrayMin = exports.arrayMax = undefined;
 
 var _typeof2 = require("babel-runtime/helpers/typeof");
 
 var _typeof3 = _interopRequireDefault(_typeof2);
+
+var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
 var _toConsumableArray2 = require("babel-runtime/helpers/toConsumableArray");
 
@@ -105,10 +109,16 @@ var deepFlatten = exports.deepFlatten = function deepFlatten(arr) {
     })));
 };
 
+var a = function a() {
+    (0, _classCallCheck3.default)(this, a);
+};
+
 /**
  * 将二维数组 转为 1维
  * @param {Array} arr 
  */
+
+
 var flatten = exports.flatten = function flatten(arr) {
     return arr.reduce(function (prev, next) {
         return prev.concat(next);
@@ -223,4 +233,14 @@ var without = exports.without = function without(arr) {
     return arr.filter(function (v) {
         return !args.includes(v);
     });
+};
+
+/**
+ * 数组总和
+ * @param {Array} arr 
+ */
+var arraySum = exports.arraySum = function arraySum(arr) {
+    return arr.reduce(function (acc, val) {
+        return acc + val;
+    }, 0);
 };
