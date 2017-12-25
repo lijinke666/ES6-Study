@@ -23,6 +23,7 @@ export const capitalize = ([first, ...rest], lowerRest = false) => {
  * 下划线转驼峰
  * @author 李金珂
  * @param {*} str 
+ * "ljk_test" => "ljkTest"
  */
 export const underlineToHump = (str="") => str.replace(/_([a-z])/g,(_,a)=> a.toLocaleUpperCase())
 
@@ -30,6 +31,7 @@ export const underlineToHump = (str="") => str.replace(/_([a-z])/g,(_,a)=> a.toL
  * 驼峰转下划线
  * @author 李金珂
  * @param {*} str 
+ * "ljkTest" => "ljk_test"
  */
 export const HumpTounderline = (str="") => str.replace(/([A-Z])/g,(_,a)=> '_'+ a.toLocaleLowerCase())
 
