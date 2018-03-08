@@ -13,8 +13,8 @@ const initCheckerboard = (arr = new Array(9).fill('e'), size = 3) => {
 // console.log(initCheckerboard());
 
 const players = {
-    player1:"x",
-    player2:"o"
+    player1: "x",
+    player2: "o"
 }
 
 const defaultCheckerboard = [
@@ -29,12 +29,27 @@ const getWingResult = (player = players.player1) => (checkerboard = defaultCheck
     //对角线
     const [cha1, cha2] = [[], []]
 
+    /**
+     * @return { [当前棋子]: [x坐标,y坐标] }
+     */
     checkerboard.forEach((v, i) => {
-        x.push(v)
-        cha1.push(v[v.length - i - 1])
-        cha2.push(v[i])
+        x.push(
+            v.map((item, index) => ({ [item]: [i, index] }))
+        )
+        cha1.push(
+            {
+                [v[v.length - i - 1]]: [i, v.length - i - 1]
+            }
+        )
+        cha2.push(
+            {
+                [v[i]]:[i,i]
+            }
+        )
         y.push(checkerboard.map(item => item[i]))
     })
+
+    console.table(cha2);
 
     //所有的可能性 排除已有 另一个玩家落子的情况
     // const all = [...x, ...y, cha1, cha2].filter(
