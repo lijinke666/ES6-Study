@@ -5,6 +5,7 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
+beifa/node_modules
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
