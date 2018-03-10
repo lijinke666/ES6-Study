@@ -50,10 +50,11 @@ const filterBoardCoordinate = (board) => (players) => (player) => {
 }
 
 const getResult = (checkerboard) => (player) => {
+    const len = checkerboard.length - 1
     return checkerboard
     .reduce((arr, v) => {
         const self = v.map(t => Object.keys(t)[0]).filter(v => v === player)
-        if (self.length === 2) {
+        if (self.length === len) {
             const currentKey = v.map(t => Object.keys(t)[0]).filter(v => v !== player)
             arr.push(
                 v.map(o => o[currentKey]).filter(v => v)
