@@ -66,10 +66,7 @@ const getResult = (checkerboard) => (player) => {
 }
 
 const getWingResult = (player = players.player1) => (checkerboard = defaultCheckerboard) => {
-
-    //获取所有旗子坐标
-    const checkerboardCoordinate = getCoordinate(checkerboard)
-
+    
     //所有的可能性 排除已有 另一个玩家落子的情况
     const all = filterBoardCoordinate(
         getCoordinate(checkerboard)
