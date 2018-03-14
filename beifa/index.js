@@ -38,13 +38,12 @@ const getCoordinate = (checkerboard = []) => {
 }
 
 const filterBoardCoordinate = (board) => (players) => (player) => {
+    const currentPlayer = Object.values(players).filter(_player => _player !== player)[0]
     return board.filter(item =>
         !(
             item
                 .map(v => Object.keys(v)[0])
-                .includes(
-                    Object.values(players).filter(_player => _player !== player)[0]
-                )
+                .includes(currentPlayer)
         )
     )
 }
