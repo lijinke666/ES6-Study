@@ -1,4 +1,5 @@
-const proxy = new Proxy({}, {
+const target = {}
+const proxy = new Proxy(target, {
   get(target, property) {
     return 666
   },
@@ -8,5 +9,5 @@ const proxy = new Proxy({}, {
   }
 })
 
-proxy.time
-proxy.name
+proxy.name = 11
+console.log(proxy.name);
