@@ -4,7 +4,8 @@ const {
     anagrams,
     capitalize,
     underlineToHump,
-    HumpTounderline
+    HumpTounderline,
+    renderTemplate
 } = require("../lib/string")
 
 describe('String', function(){
@@ -47,4 +48,12 @@ describe('String', function(){
             assert(HumpTounderline('testStrStr') === "test_str_str")
         })
     });
+
+    describe('#renderTemplate()',()=>{
+        it('驼峰 testStr => test_str', () => {
+            assert(renderTemplate(`你是一条{name}`,{
+                name:'帅哥'
+            }) === '你是一条帅哥')
+        })
+    })
 })

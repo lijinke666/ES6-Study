@@ -25,7 +25,7 @@ export const capitalize = ([first, ...rest], lowerRest = false) => {
  * @param {*} str 
  * "ljk_test" => "ljkTest"
  */
-export const underlineToHump = (str="") => str.replace(/_([a-z])/g,(_,a)=> a.toLocaleUpperCase())
+export const underlineToHump = (str = "") => str.replace(/_([a-z])/g, (_, a) => a.toLocaleUpperCase())
 
 /**
  * 驼峰转下划线
@@ -33,5 +33,20 @@ export const underlineToHump = (str="") => str.replace(/_([a-z])/g,(_,a)=> a.toL
  * @param {*} str 
  * "ljkTest" => "ljk_test"
  */
-export const HumpTounderline = (str="") => str.replace(/([A-Z])/g,(_,a)=> '_'+ a.toLocaleLowerCase())
+export const HumpTounderline = (str = "") => str.replace(/([A-Z])/g, (_, a) => '_' + a.toLocaleLowerCase())
+
+
+/**
+ * 模板解析
+ * @param {*} template 模板
+ * @param {*} data  变量
+ */
+export const renderTemplate = (template = '', data = {}) => {
+  return template && template.replace(
+    /(\{)([^\{]+)(\})/g,
+    (originTemplate, __, templateName)=> {
+      return data && data[templateName] || originTemplate
+    },
+  )
+}
 
