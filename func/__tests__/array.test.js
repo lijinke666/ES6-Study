@@ -17,7 +17,8 @@ const {
     createAnySerializeArray,
     filterNonUnique,
     without,
-    arraySum
+    arraySum,
+    difference
 } = require("../lib/array")
 
 describe('Array', function(){
@@ -112,6 +113,11 @@ describe('Array', function(){
     describe('#arraySum()', () => {
         it('数组下标求和,返回 10', () => {
             assert( arraySum([1,2,3,4])  === 10)
+        })
+    });
+    describe('#difference()', () => {
+        it('返回两个数组不同的值, 返回 [1,5]', () => {
+            assert.deepEqual( difference([1,2,3],[3,2,5]), [1,5] )
         })
     });
 });

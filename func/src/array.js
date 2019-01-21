@@ -144,3 +144,11 @@ export const without = (arr, ...args) => arr.filter(v => !args.includes(v))
  * @param {Array} arr 
  */
 export const arraySum = (arr) => arr.reduce((acc, val) => acc + val, 0)
+
+
+/**
+ * 返回两个数组不同的值
+ * @param {*} arr 
+ * @param {*} arr2 
+ */
+export const difference = (arr, arr2) => [...arr, ...arr2].reduce((a, b) => a.filter(c => !b.includes(c)))
